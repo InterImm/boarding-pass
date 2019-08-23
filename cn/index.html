@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title> 登机牌 | 星际移民中心</title>
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css'>
+	<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+
+<body>
+
+	<div class="main" id="app" v-cloak>
+		<i></i>
+		<i></i>
+		<h6>{{ ship }} 登机牌</h6>
+		<div class="pass">
+			<div class="shipping-info-head">
+				<h6>{{ from }}</h6>
+				<h6>{{ destination }}</h6>
+			</div>
+			<div class="shipping-info-head1">
+				<h2>{{ fromCode }} <i class="fa fa-arrow-right"></i></h2>
+				<h2>{{ destinationCode }}</h2>
+			</div>
+
+			<div class="shipping-info-head2">
+				<p>{{ departureTime }}</p>
+				<p>{{ arrivalTime }}</p>
+			</div>
+
+		</div>
+
+		<div class="circle"></div>
+		<h1>{{ name }}</h1>
+
+		<div class="shipping-info-head3">
+			<p>Terminal</p>
+			<p>Platform</p>
+		</div>
+
+		<div class="shipping-info-head4">
+			<p>{{ departureTerminal }}</p>
+			<p>{{ departurePlatform }}</p>
+		</div>
+
+		<div class="shipping-info-head5">
+			<p>Date</p>
+			<p>Ticket Number</p>
+		</div>
+
+		<div class="shipping-info-head6">
+			<p>{{ departureTime }}</p>
+			<p>8899394367</p>
+		</div>
+
+
+		<div class="shipping-info-head5">
+			<p>Room</p>
+			<p>Deck</p>
+		</div>
+
+		<div class="shipping-info-head6">
+			<p>{{ room }}</p>
+			<p>{{ deck }}</p>
+		</div>
+		<div class="barcode"></div>
+	</div>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://unpkg.com/vue-router"></script>
+
+	<script src="./assets/app.js"></script>
+
+</body>
+
+</html>
