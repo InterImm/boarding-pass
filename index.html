@@ -1,80 +1,321 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>Boarding Passs | Interplanetary Immigration Center</title>
-	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css'>
-	<link rel="stylesheet" href="./assets/style.css">
-
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>星际旅行登机牌 - 星际移民中心</title>
+  <link rel="stylesheet" href="../css/bulma/css/bulma.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="has-navbar-fixed-bottom">
+  <section class="hero is-medium is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-8-desktop is-offset-2-desktop">
+            <h1 class="title is-2 is-spaced">
+             定制你的星际旅行登机牌
+            </h1>
+            <h2 class="subtitle is-4">
+              已经购买了去其他星球的飞船票？请在这里领取你的专属登机牌。
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-8-desktop is-offset-2-desktop">
+          <div class="content" id="app" v-cloak>
 
-	<div class="main" id="app" v-cloak>
-		<i></i>
-		<i></i>
-		<h6>{{ ship }} Boarding Pass</h6>
-		<div class="pass">
-			<div class="shipping-info-head">
-				<h6>{{ from }}</h6>
-				<h6>{{ destination }}</h6>
-			</div>
-			<div class="shipping-info-head1">
-				<h2>{{ fromCode }} <i class="fa fa-arrow-right"></i></h2>
-				<h2>{{ destinationCode }}</h2>
-			</div>
+            <!-- This is the beginning of the contents -->
 
-			<div class="shipping-info-head2">
-				<p>{{ departureTime }}</p>
-				<p>{{ arrivalTime }}</p>
-			</div>
+            <div>
+              <div class="box">
+                <article class="media">
+                  <div class="media-content">
+                    <div class="content">
+                      <div class="columns">
+                        <div class="column">
+                          <span>我的名字是</span>
+                        </div>
+                        <div class="column"> <input class="input" type="text" v-model="form.name_cn">
+                        </div>
+                      </div>
 
-		</div>
-
-		<div class="circle"></div>
-		<h1>{{ name }}</h1>
-
-		<div class="shipping-info-head3">
-			<p>Terminal</p>
-			<p>Platform</p>
-		</div>
-
-		<div class="shipping-info-head4">
-			<p>{{ departureTerminal }}</p>
-			<p>{{ departurePlatform }}</p>
-		</div>
-
-		<div class="shipping-info-head5">
-			<p>Date</p>
-			<p>Ticket Number</p>
-		</div>
-
-		<div class="shipping-info-head6">
-			<p>{{ departureTime }}</p>
-			<p>8899394367</p>
-		</div>
-
-
-		<div class="shipping-info-head5">
-			<p>Room</p>
-			<p>Deck</p>
-		</div>
-
-		<div class="shipping-info-head6">
-			<p>{{ room }}</p>
-			<p>{{ deck }}</p>
-		</div>
-		<div class="barcode"></div>
-	</div>
+                      <div class="columns">
+                        <div class="column">
+                          <span>我要登录的飞船是</span>
+                        </div>
+                        <div class="column"> <input class="input" type="text" v-model="form.ship_cn">
+                        </div>
+                      </div>
 
 
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="https://unpkg.com/vue-router"></script>
+                      <div class="columns">
+                        <div class="column">
+                          <span> 我要从 </span>
+                        </div>
+
+                        <div class="column">
+                          <div class="astro_selector" style="text-align: left;">
+                            <div class="select">
+                              <select v-model="from_body">
+                                <option v-for="option in options_cn" v-bind:value="option.value">
+                                  {{ option.text }}
+                                </option>
+                              </select>
+                            </div>
+
+                            <span> 到 </span>
+                            <div class="select">
+                              <select v-model="to_body">
+                                <option v-for="option in options_cn" v-bind:value="option.value">
+                                  {{ option.text }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="columns">
+                          <div class="column">
+                            <span>我出发的太空港是 </span>
+                          </div>
+                          <div class="column"> <input class="input" type="text" v-model="form.fromCode">
+                          </div>
+                        </div>
+
+
+                        <div class="columns">
+                            <div class="column">
+                              <span>我到达的太空港是 </span>
+                            </div>
+                            <div class="column"> <input class="input" type="text" v-model="form.destinationCode">
+                            </div>
+                          </div>
 
 
 
-	<script src="assets/app.js"></script>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+
+              <div class="box">
+                <article class="media">
+                  <div class="media-content">
+                    <div class="content">
+                      <div class="columns">
+                        <div class="column">
+                          <div class="field">
+                            <label class="label">出发日期（e.g., 2020-04-01）</label>
+                            <div class="control">
+                              <input class="input" type="text" v-model="form.departureTime">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="column">
+                          <div class="field">
+                            <label class="label">到达日期（e.g., 2021-09-13）</label>
+                            <div class="control">
+                              <input class="input" type="text" v-model="form.arrivalTime">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+
+              <div class="box">
+                <article class="media">
+                  <div class="media-content">
+                    <div class="content">
+
+
+                        <div class="columns">
+                            <div class="column">
+                              <span>我在飞船 {{form.ship}} 上的房间号是 </span>
+                            </div>
+                            <div class="column"> <input class="input" type="text" v-model="form.room">
+                            </div>
+                          </div>
+
+                          <div class="columns">
+                              <div class="column">
+                                <span>我的房间在哪一层平台 </span>
+                              </div>
+                              <div class="column"> <input class="input" type="text" v-model="form.deck">
+                              </div>
+                            </div>
+
+
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <div class="box">
+                  <article class="media">
+                    <div class="media-content">
+                      <div class="content">
+
+
+                          <div class="columns">
+                              <div class="column">
+                                <span>我购买的飞船 {{ this.form.ship }} 的船票号码是 </span>
+                              </div>
+                              <div class="column"> <input class="input" type="text" v-model="form.ticketNumber">
+                              </div>
+                            </div>
+
+
+
+
+                      </div>
+                    </div>
+                  </article>
+                </div>
+
+
+
+              <div class="box">
+                <article class="media">
+                  <div class="media-content">
+                    <div class="content">
+                      <p>
+                        请在下方查看船票预览。
+                      </p>
+                      <p>
+                        这张船票的唯一链接请点击这里
+                        <a v-bind:href=generate_link_cn target="_blank">船票链接</a>
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+            </div>
+
+            <!-- This is the beginning of the contents -->
+            <div class="content" style="height: 800px;margin-top:5em;">
+              <iframe :src=generate_link_cn width="100%" frameBorder="0"
+                style="height: 100%; border: none; x-overflow: hidden">浏览器不兼容，请使用上面提供的船票链接。</iframe>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="footer has-text-centered">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-8-desktop is-offset-2-desktop">
+          <p>
+            <strong class="has-text-weight-semibold">
+              来自 <a href="http://interimm.org">星际移民中心</a> <a href="about.html">致谢</a>
+            </strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="navbar is-dark is-fixed-bottom">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="//interimm.org/en">
+        <img src="//interimm.org/assets/ico/favicon-192x192.png" alt="Interplanetary Immigration Center" width="28"
+          height="28">
+      </a>
+      <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="//interimm.org/en">
+          首页
+        </a>
+        <div class="navbar-item has-dropdown has-dropdown-up is-hoverable">
+          <a class="navbar-link" href="//interimm.org/en/archives">
+            工具
+          </a>
+          <div class="navbar-dropdown is-boxed">
+            <a class="navbar-item" href="//interimm.org/mars-clock/">
+              火星时钟
+            </a>
+            <a class="navbar-item" href="//interimm.org/mars-map/">
+             火星地图
+            </a>
+            <a class="navbar-item" href="//interimm.org/comms-latency/">
+              星际通信延时计算
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="//interimm.org/en/archives">
+              更多工具
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="nav-link nav-link-icon" href="https://github.com/interimm/boarding-pass" target="blank"
+                style="color: #ed7a57;">
+                <i class="fab fa-github-square"></i>
+                <span class="nav-link-inner--text">
+
+                </span>
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="nav-link nav-link-icon" href="en" data-toggle="tooltip" title="Switch Language"
+                style="color: #ed7a57;">
+                <i class="fa fa-language"></i>
+                <span class="nav-link-inner--text">EN</span>
+              </a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <script type="text/javascript" src="../lib/vue.js"></script>
+  <script type="text/javascript" src="../lib/moment/moment-with-locales.js"></script>
+
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="../lib/navbar.js"></script>
+
+  <script type="text/javascript" src="../lib/util.js"></script>
+  <script type="text/javascript" src="../lib/main.js"></script>
 
 </body>
 
