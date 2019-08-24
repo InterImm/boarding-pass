@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interplanetary Travel Boarding Pass - Interplanetary Immigration Center</title>
+  <link rel="stylesheet" href="../css/bulma/css/bulma.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+
+<body class="has-navbar-fixed-bottom">
+  <section class="hero is-medium is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-8-desktop is-offset-2-desktop">
+            <h1 class="title is-2 is-spaced">
+              Get Your Interplanetary Boarding Pass
+            </h1>
+            <h2 class="subtitle is-4">
+              Don't forget to get the boarding pass for your interplanetary travel.
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-8-desktop is-offset-2-desktop">
+          <div class="content" id="app" v-cloak>
+
+            <!-- This is the beginning of the contents -->
+
+            <div>
+              <div class="box">
+                <article class="media">
+                  <div class="media-content">
+                    <div class="content">
+                      <div class="columns">
+                        <div class="column">
+                          <span>My name is</span>
+                        </div>
+                        <div class="column"> <input class="input" type="text" v-model="form.name">
+                        </div>
+                      </div>
+
+                      <div class="columns">
+                        <div class="column">
+                          <span>I will board on ship</span>
+                        </div>
+                        <div class="column"> <input class="input" type="text" v-model="form.ship">
+                        </div>
+                      </div>
+
+
+                      <div class="columns">
+                        <div class="column">
+                          <span> I am travelling from </span>
+                        </div>
+
+                        <div class="column">
+                          <div class="astro_selector" style="text-align: left;">
+                            <div class="select">
+                              <select v-model="from_body">
+                                <option v-for="option in options_en" v-bind:value="option.value">
+                                  {{ option.text }}
+                                </option>
+                              </select>
+                            </div>
+
+                            <span> to </span>
+                            <div class="select">
+                              <select v-model="to_body">
+                                <option v-for="option in options_en" v-bind:value="option.value">
+                                  {{ option.text }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="columns">
+                          <div class="column">
+                            <span>I will board from spaceport </span>
+                          </div>
+                          <div class="column"> <input class="input" type="text" v-model="form.fromCode">
+                          </div>
+                        </div>
+
+
+                        <div class="columns">
+                            <div class="column">
+                              <span>I will arrive at spaceport </span>
+                            </div>
+                            <div class="column"> <input class="input" type="text" v-model="form.destinationCode">
+                            </div>
+                          </div>
+
+
+
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+
+              <div class="box">
+                <article class="media">
+                  <div class="media-content">
+                    <div class="content">
+                      <div class="columns">
+                        <div class="column">
+                          <div class="field">
+                            <label class="label">Departure Date（e.g., 2020-04-01）</label>
+                            <div class="control">
+                              <input class="input" type="text" v-model="form.departureTime">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="column">
+                          <div class="field">
+                            <label class="label">Arrival Date（e.g., 2021-09-13）</label>
+                            <div class="control">
+                              <input class="input" type="text" v-model="form.arrivalTime">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+
+              <div class="box">
+                <article class="media">
+                  <div class="media-content">
+                    <div class="content">
+
+
+                        <div class="columns">
+                            <div class="column">
+                              <span>My room number on the spaceship is </span>
+                            </div>
+                            <div class="column"> <input class="input" type="text" v-model="form.room">
+                            </div>
+                          </div>
+
+                          <div class="columns">
+                              <div class="column">
+                                <span>Which deck is my room on </span>
+                              </div>
+                              <div class="column"> <input class="input" type="text" v-model="form.deck">
+                              </div>
+                            </div>
+
+
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <div class="box">
+                  <article class="media">
+                    <div class="media-content">
+                      <div class="content">
+
+
+                          <div class="columns">
+                              <div class="column">
+                                <span>My ticket number for {{ this.form.ship }} is </span>
+                              </div>
+                              <div class="column"> <input class="input" type="text" v-model="form.ticketNumber">
+                              </div>
+                            </div>
+
+
+
+
+                      </div>
+                    </div>
+                  </article>
+                </div>
+
+
+
+              <div class="box">
+                <article class="media">
+                  <div class="media-content">
+                    <div class="content">
+                      <p>
+                        You will find the preview of your ticket below.
+                      </p>
+                      <p>
+                        The link to this ticket is here
+                        <a v-bind:href=generate_link target="_blank">Link to Your Ticket</a>
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+            </div>
+
+            <!-- This is the beginning of the contents -->
+            <div class="content" style="height: 800px;margin-top:5em;">
+              <iframe :src=generate_link width="100%" frameBorder="0"
+                style="height: 100%; border: none; x-overflow: hidden">Browser not compatible.</iframe>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="footer has-text-centered">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-8-desktop is-offset-2-desktop">
+          <p>
+            <strong class="has-text-weight-semibold">
+              Built by <a href="http://interimm.org">Interplanetary Immigration Center</a> with love. <a href="../about.html">Acknowledgement</a>
+            </strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="navbar is-dark is-fixed-bottom">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="//interimm.org/en">
+        <img src="//interimm.org/assets/ico/favicon-192x192.png" alt="Interplanetary Immigration Center" width="28"
+          height="28">
+      </a>
+      <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="//interimm.org/en">
+          Home
+        </a>
+        <div class="navbar-item has-dropdown has-dropdown-up is-hoverable">
+          <a class="navbar-link" href="//interimm.org/en/archives">
+            Tools
+          </a>
+          <div class="navbar-dropdown is-boxed">
+            <a class="navbar-item" href="//interimm.org/mars-clock/en">
+              Mars Clock
+            </a>
+            <a class="navbar-item" href="//interimm.org/mars-map/">
+              Mars Map
+            </a>
+            <a class="navbar-item" href="//interimm.org/comms-latency/en/">
+              Comms Latency
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="//interimm.org/en/archives">
+              More
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="nav-link nav-link-icon" href="https://github.com/interimm/boarding-pass" target="blank"
+                style="color: #ed7a57;">
+                <i class="fab fa-github-square"></i>
+                <span class="nav-link-inner--text">
+
+                </span>
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="nav-link nav-link-icon" href="../" data-toggle="tooltip" title="Switch Language"
+                style="color: #ed7a57;">
+                <i class="fa fa-language"></i>
+                <span class="nav-link-inner--text">中文</span>
+              </a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <script type="text/javascript" src="../lib/vue.js"></script>
+  <script type="text/javascript" src="../lib/moment/moment-with-locales.js"></script>
+
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="../lib/navbar.js"></script>
+
+  <script type="text/javascript" src="../lib/util.js"></script>
+  <script type="text/javascript" src="../lib/main.js"></script>
+
+</body>
+
+</html>
